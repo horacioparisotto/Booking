@@ -7,9 +7,9 @@ function LargeCard({ img, title, description, buttonText }) {
       <div className="relative h-96 min-w-[300px]">
         <Image
           src={img}
-          layout="fill"
+          style={{ layout: "fill", objectFit: "cover" }}
+          fill={true}
           className="rounded-2xl"
-          objectFit="cover"
         />
       </div>
       <div className="absolute top-32 left-12">
