@@ -53,9 +53,9 @@ const Map = ({ searchResults }) => {
             </p>
           </Marker>
 
-          <Popup latitude={result.lat} longitude={result.long}>
+          {/* <Popup latitude={result.lat} longitude={result.long}>
             {result.title}
-          </Popup>
+          </Popup> */}
         </div>
       ))}
     </ReactMapGL>
