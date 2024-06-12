@@ -1,6 +1,5 @@
 import Image from "next/image";
 import {
-  GlobeAltIcon,
   MenuIcon,
   UserCircleIcon,
   SearchIcon,
@@ -9,7 +8,7 @@ import {
 import { useState } from "react";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
-import { DateRangePicker } from "react-date-range";
+import { DateRange } from "react-date-range";
 import { useRouter } from "next/dist/client/router";
 
 function Header({ placeholder }) {
@@ -64,21 +63,23 @@ function Header({ placeholder }) {
         />
       </div>
       {/* Search */}
-      <div className="flex items-center md:border-2 rounded-full md:shadow-sm py-2">
+      <div className="sm:flex items-center border-2 rounded-full shadow-md py-2 cursor-pointer sm-two-columns justify-center">
         <input
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && search()}
-          placeholder={placeholder || "Start your Search"}
-          className="flex-grow text-sm text-gray-600 pl-5 placeholder-gray-400 outline-none bg-transparent"
+          placeholder={
+            placeholder ||
+            `Destinations                   |            Check-in / Check-out           |                     Travelers`
+          }
+          className="text-sm text-gray-600 pl-5 placeholder-gray-400  outline-none bg-transparent w-10/12"
         />
-        <SearchIcon className="h-8 hidden md:inline-flex p-2 mx-auto cursor-pointer md:mx-2 bg-red-400 rounded-full text-white" />
+        <div className="w-1/12 inline-block">
+          <SearchIcon className="h-8 inline-flex p-2 mx-auto cursor-pointer md:mx-2 bg-red-400 rounded-full text-white " />
+        </div>
       </div>
       {/* Right */}
-      <div className="flex items-center text-gray-500 justify-end space-x-4">
-        <p className="cursor-pointer hidden md:inline">Airbnb your Home</p>
-        <GlobeAltIcon className="h-6 cursor-pointer hidden sm:inline" />
-
+      <div className="hidden md:flex items-center text-gray-500 justify-end space-x-4">
         <div className="flex items-center space-x-2 border-2 p-2 rounded-full">
           <MenuIcon className="h-6 cursor-pointer" />
           <UserCircleIcon className="h-6 cursor-pointer" />
@@ -88,7 +89,7 @@ function Header({ placeholder }) {
       {/* Calender */}
       {searchInput && (
         <div className="flex flex-col col-span-3 mx-auto mt-0">
-          <DateRangePicker
+          <DateRange
             minDate={new Date()}
             rangeColors={["#FD5B61"]}
             ranges={[selectionRange]}

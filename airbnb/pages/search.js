@@ -12,24 +12,26 @@ function Search({ searchResults }) {
 
   const formattedStartDate = startDate
     ? format(new Date(startDate), "dd MMMM")
-    : "Unknown start date";
+    : "Flexible start date";
   const formattedEndDate = endDate
     ? format(new Date(endDate), "dd MMMM")
-    : "Unknown end date";
+    : "Flexible end date";
   const range = `${formattedStartDate} - ${formattedEndDate}`;
 
   return (
     <div>
-      <Header placeholder={`${location} | ${range} | ${noOfGuests} guests`} />
+      <Header
+        placeholder={`${location}           |           ${range}           |           ${noOfGuests} Guests`}
+      />
 
       <main className="flex">
-        <section className="flex-grow pt-14 px-6">
+        <section className="pt-14 px-6 w-10/12">
           <p className="text-xs">
-            {range} for {noOfGuests} guests
+            {range} for {noOfGuests} Guests
           </p>
 
           <h1 className="text-3xl font-semibold mt-2 mb-6">
-            Stays in {location}
+            Retreats in {location}
           </h1>
 
           <div className="hidden lg:inline-flex mb-5 space-x-3 text-gray-800 whitespace-nowrap">
@@ -40,7 +42,7 @@ function Search({ searchResults }) {
             <p className="button">More Filters</p>
           </div>
 
-          <div className="flex flex-col">
+          <div className="flex flex-wrap">
             {searchResults.map(
               ({ img, location, title, description, star, price, total }) => (
                 <InfoCard
@@ -59,7 +61,7 @@ function Search({ searchResults }) {
         </section>
 
         <section className="hidden xl:inline-flex xl:min-w-[600px]">
-          <Map searchResults={searchResults}/>
+          <Map searchResults={searchResults} location={location} />
         </section>
       </main>
 
@@ -71,7 +73,7 @@ function Search({ searchResults }) {
 export default Search;
 
 export async function getServerSideProps() {
-  let results = await fetch("https://www.jsonkeeper.com/b/5NPS");
+  let results = await fetch("https://www.jsonkeeper.com/b/RINN");
   const searchResults = await results.json();
 
   return {
