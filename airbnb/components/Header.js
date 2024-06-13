@@ -68,10 +68,7 @@ function Header({ placeholder }) {
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && search()}
-          placeholder={
-            placeholder ||
-            `Destinations                   |            Check-in / Check-out           |                     Travelers`
-          }
+          placeholder={placeholder || `Search`}
           className="text-sm text-gray-600 pl-5 placeholder-gray-400  outline-none bg-transparent w-10/12"
         />
         <div className="w-1/12 inline-block">
